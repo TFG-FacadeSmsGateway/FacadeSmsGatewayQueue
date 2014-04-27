@@ -28,8 +28,8 @@ public class ControlMessageEntity implements Serializable, IMessageEntity {
         this.isoLang = items[2];
     }
     
-    public ControlMessageEntity(String[] items, int num) {
-        this.action = items[0];
+    public ControlMessageEntity(String item) {
+        this.action = item;
     }
     
     public ControlMessageEntity(String action, String args, String iso_lang) {

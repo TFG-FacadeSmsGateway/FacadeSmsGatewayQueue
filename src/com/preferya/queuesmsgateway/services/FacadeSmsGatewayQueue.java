@@ -65,9 +65,9 @@ public class FacadeSmsGatewayQueue {
         String[] _splits = rcvMessage.split(",");
         
         if(_splits.length == 1) {
-            _ret = new ControlMessageEntity(_splits, 1); //Constructor for stop case
+            _ret = new ControlMessageEntity(_splits[0]); //Constructor for stop case
         }else if(_splits.length == 3) { //TODO: modificar para cuando tenga argumentos
-            if(_splits[1].equalsIgnoreCase("")){
+            if(_splits[0].equalsIgnoreCase("add_country")){
                 _ret = new ControlMessageEntity(_splits);
             }else{
                 _ret = new DataMessageEntity(_splits);
