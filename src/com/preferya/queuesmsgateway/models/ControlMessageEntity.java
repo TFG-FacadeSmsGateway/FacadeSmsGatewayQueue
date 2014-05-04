@@ -42,7 +42,8 @@ public class ControlMessageEntity implements Serializable, IMessageEntity {
         String _ret = "";
         
         _ret += this.action + ",";
-        _ret += this.args;
+        _ret += this.args + ",";
+        _ret += this.isoLang;
         
         return _ret;
     }

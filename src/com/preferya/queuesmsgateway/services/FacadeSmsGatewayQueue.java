@@ -46,12 +46,12 @@ public class FacadeSmsGatewayQueue {
                     System.out.println("STOP");
                     NewTasker _newTasker = new NewTasker(_message.getIsoLang());
                     _newTasker.sendMessage(_message);
-                }/*else { //add_country case
+                }else { //add_country case
                     NewTasker _newTasker = new NewTasker(_message.getArgs());
                     _newTasker.sendMessage(_message);
                     _newTasker.close();
                     System.out.println("New Queue");
-                }*/
+                }
             }
             
         }
@@ -64,14 +64,10 @@ public class FacadeSmsGatewayQueue {
         IMessageEntity _ret;
         String[] _splits = rcvMessage.split(",");
         
-        if(_splits.length == 1) {
-            _ret = new ControlMessageEntity(_splits[0]); //Constructor for stop case
-        }else if(_splits.length == 3) { //TODO: modificar para cuando tenga argumentos
-            if(_splits[0].equalsIgnoreCase("add_country")){
-                _ret = new ControlMessageEntity(_splits);
-            }else{
-                _ret = new DataMessageEntity(_splits);
-            }
+        if(_splits[0].equalsIgnoreCase("stop")) {
+            _ret = new ControlMessageEntity(_splits); //Constructor for stop case
+        }else if(_splits[0].equalsIgnoreCase("add_country")){
+            _ret = new ControlMessageEntity(_splits);
         }else {
             _ret = new DataMessageEntity(_splits);
         }
